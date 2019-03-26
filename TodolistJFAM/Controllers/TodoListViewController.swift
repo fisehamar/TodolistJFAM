@@ -20,7 +20,6 @@ class TodoListViewController: UITableViewController {
         
         let newItem = Item()
         newItem.itemName = "First Item"
-        newItem.done = true
         itemsArray.append(newItem)
         
         let otherItem = Item()
@@ -35,10 +34,10 @@ class TodoListViewController: UITableViewController {
         
         // Do any additional setup after loading the view, typically from a nib.
         
-//        if let items = defaults.array(forKey: "AddItem") as? [String] {
-//
-//            items = itemsArray
-//        }
+        if let items = defaults.array(forKey: "AddItem") as? [Item] {
+
+           itemsArray = items
+        }
     }
     
     //MARK - TableView Data Source Methods
