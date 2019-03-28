@@ -90,7 +90,7 @@ class TodoListViewController: UITableViewController {
             newItem.title = textField.text!
             newItem.done = false // seting the valuse false to 'done' attributes because it defined as optional property in the database
             // we need to get access parent relationship and set to the selected catagory
-            newItem.parnetcatagory = self.selectedCatagory
+            newItem.parentCategory = self.selectedCatagory
             
             self.itemsArray.append(newItem)
             //self.defaults.setValue(self.itemsArray, forKey: "AddItem")
@@ -132,9 +132,17 @@ class TodoListViewController: UITableViewController {
     
     // MARK: - laods data from the poroperty list
     
-    func loadItems (with request: NSFetchRequest<Item> = Item.fetchRequest()) {
+    func loadItems (with request: NSFetchRequest<Item> = Item.fetchRequest(), predicate: NSPredicate? = nil) {
         
-        //let request: NSFetchRequest<Item> = Item.fetchRequest()
+        // maths selected catagory with its corosponding items when we perform fetching... otherwise we get all existing items for each selected category
+        let categoryPredicate = NSPredicate(format: "parentCategory.name MATCHES %@", selectedCatagory!.name!)
+        if let aditionalPredicate = predicate {
+            request.predicate = NSCompoundPredicate(andPredicateWithSubpredicates: [categoryPredicate, aditionalPredicate])
+        } else {
+            
+            request.predicate = categoryPredicate
+        }
+        
         
         do {
             
@@ -159,11 +167,12 @@ extension TodoListViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         
         let request: NSFetchRequest<Item> = Item.fetchRequest()
-        request.predicate = NSPredicate(format: "title CONTAINS[cd] %@", searchBar.text!)
+        
+       let predicate = NSPredicate(format: "title CONTAINS[cd] %@", searchBar.text!)
     
         request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
         
-        loadItems(with: request)
+        loadItems(with: request, predicate: predicate)
         
 //        do {
 //
