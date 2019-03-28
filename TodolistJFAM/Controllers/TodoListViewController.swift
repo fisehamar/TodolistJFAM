@@ -21,6 +21,7 @@ class TodoListViewController: UITableViewController {
         super.viewDidLoad()
         
         print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)) // check the path for the DB
+        
         loadItems()
     
 
@@ -120,11 +121,11 @@ class TodoListViewController: UITableViewController {
     }
     
     
-    // MARK - laods data from the poroperty list
+    // MARK: - laods data from the poroperty list
     
-    func loadItems () {
+    func loadItems (with request: NSFetchRequest<Item> = Item.fetchRequest()) {
         
-        let request: NSFetchRequest<Item> = Item.fetchRequest()
+        //let request: NSFetchRequest<Item> = Item.fetchRequest()
         
         do {
             
@@ -134,6 +135,8 @@ class TodoListViewController: UITableViewController {
             
             print("Error fetchind data from the context \(error)")
         }
+        
+        tableView.reloadData()
         
 }
 
@@ -151,16 +154,17 @@ extension TodoListViewController: UISearchBarDelegate {
     
         request.sortDescriptors = [NSSortDescriptor(key: "title", ascending: true)]
         
+        loadItems(with: request)
         
-        do {
-            
-            itemsArray = try context.fetch(request)
-            
-        } catch {
-            
-            print("Error fetching dat afrom the context \(error)")
-        }
+//        do {
+//
+//            itemsArray = try context.fetch(request)
+//
+//        } catch {
+//
+//            print("Error fetching dat afrom the context \(error)")
+//        }
         
-        tableView.reloadData()
+        //tableView.reloadData()
     }
 }
