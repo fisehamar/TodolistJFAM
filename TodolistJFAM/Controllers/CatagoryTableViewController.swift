@@ -73,10 +73,23 @@ class CatagoryTableViewController: UITableViewController {
     
    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
     
+    performSegue(withIdentifier: "gotoItems", sender: self)
+    
     
         
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // this method needs to triggred before we perform the method defiend in the did select row delegate method
+        
+        let destinationVC = segue.destination as! TodoListViewController
+        // grap the catagory that corospionds to the selected cell
+        
+        if let indexPath = tableView.indexPathForSelectedRow {
+            destinationVC.selectedCatagory = catagoryArray[indexPath.row]
+            
+        }
+    }
     
     //MARK: - Data Manipulations
     

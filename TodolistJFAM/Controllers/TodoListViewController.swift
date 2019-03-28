@@ -16,13 +16,20 @@ class TodoListViewController: UITableViewController {
     let dataFilePath = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first?.appendingPathComponent("ItemPlist")
     
     let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+    var selectedCatagory: Catagory? {
+        
+        didSet {
+            
+            loadItems()
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
         print(FileManager.default.urls(for: .documentDirectory, in: .userDomainMask)) // check the path for the DB
         
-        loadItems()
+        
     
 
     }
@@ -82,6 +89,8 @@ class TodoListViewController: UITableViewController {
             
             newItem.title = textField.text!
             newItem.done = false // seting the valuse false to 'done' attributes because it defined as optional property in the database
+            // we need to get access parent relationship and set to the selected catagory
+            newItem.parnetcatagory = self.selectedCatagory
             
             self.itemsArray.append(newItem)
             //self.defaults.setValue(self.itemsArray, forKey: "AddItem")
