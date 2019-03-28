@@ -13,6 +13,7 @@
 		E203C6752249E4B200DBC9BE /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E203C6742249E4B200DBC9BE /* Assets.xcassets */; };
 		E203C6782249E4B200DBC9BE /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E203C6762249E4B200DBC9BE /* LaunchScreen.storyboard */; };
 		E2F337DF224BE051005E9245 /* ItemDataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E2F337DD224BE051005E9245 /* ItemDataModel.xcdatamodeld */; };
+		E2F916FC224D227A00201018 /* CatagoryTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E2F916FB224D227A00201018 /* CatagoryTableViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		E203C6772249E4B200DBC9BE /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		E203C6792249E4B200DBC9BE /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		E2F337DE224BE051005E9245 /* ItemDataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ItemDataModel.xcdatamodel; sourceTree = "<group>"; };
+		E2F916FB224D227A00201018 /* CatagoryTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatagoryTableViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -77,6 +79,7 @@
 		E2F337B9224A9097005E9245 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				E2F916FB224D227A00201018 /* CatagoryTableViewController.swift */,
 				E203C66F2249E4B000DBC9BE /* TodoListViewController.swift */,
 			);
 			path = Controllers;
@@ -173,6 +176,7 @@
 				E2F337DF224BE051005E9245 /* ItemDataModel.xcdatamodeld in Sources */,
 				E203C6702249E4B000DBC9BE /* TodoListViewController.swift in Sources */,
 				E203C66E2249E4B000DBC9BE /* AppDelegate.swift in Sources */,
+				E2F916FC224D227A00201018 /* CatagoryTableViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
