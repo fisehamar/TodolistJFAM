@@ -72,7 +72,8 @@ class CatagoryTableViewController: UITableViewController {
     //MARK: - TableView Delegate Methods
     
    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+    
+    
         
     }
     
@@ -109,4 +110,32 @@ class CatagoryTableViewController: UITableViewController {
     
     
 
+}
+
+
+//MARK: Searh Delegate Methods
+
+extension CatagoryTableViewController: UISearchBarDelegate {
+    
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        
+        let request: NSFetchRequest<Catagory> = Catagory.fetchRequest()
+        request.predicate = NSPredicate(format: "name CONTAINS[cd] %@", searchBar.text!)
+        request.sortDescriptors = [NSSortDescriptor(key: "name", ascending: true)]
+        loadCatagories(with: request)
+        
+    }
+    
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        if searchBar.text?.count == 0 {
+            
+            loadCatagories()
+           
+            DispatchQueue.main.async {
+                searchBar.resignFirstResponder()
+            }
+            
+        }
+    }
+    
 }
